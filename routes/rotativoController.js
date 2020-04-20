@@ -1,26 +1,25 @@
-const express = require('express');
-const router = express.Router();
-const rotativoModelo = require('../models/rotativoModel.js')
+const express = require('express')
+const router = express.Router()
+const RotativoModelo = require('../models/rotativoModel.js')
 
-let rotativo = new rotativoModelo()
+const rotativo = new RotativoModelo()
 
-router.get('/url', function(req, res) {
-  let url = rotativo.item()
+router.get('/url', function (req, res) {
+  const url = rotativo.item()
 
-  res.json({url: url});
-});
+  res.json({ url: url })
+})
 
-router.get('/items', function(req, res) {
-  let items = rotativo.items()
+router.get('/items', function (req, res) {
+  const items = rotativo.items()
 
-  res.json(items);
-});
+  res.json(items)
+})
 
-router.get('/pedidos', function(req, res) {
-  let pedidos = rotativo.pedidos()
+router.get('/pedidos', function (req, res) {
+  const pedidos = rotativo.pedidos()
 
-  res.json({total: pedidos});
-});
+  res.json({ total: pedidos })
+})
 
-
-module.exports = router;
+module.exports = router

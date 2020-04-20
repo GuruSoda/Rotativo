@@ -1,37 +1,37 @@
 
 const configuracion = 'configs/rotativoConf.json'
 
-class rotativo {
-    constructor() {
-        this.contador_pedidos = 0
-        this.indice = 0
+class Rotativo {
+  constructor () {
+    this.contador_pedidos = 0
+    this.indice = 0
 
-        this.rotacion = require('../' + configuracion).rotacion
+    this.rotacion = require('../' + configuracion).rotacion
 
-//        console.log(this.rotacion)
-    }
+  //  console.log(this.rotacion)
+  }
 
-    item() {
-//        console.log(this.indice, '/', this.rotacion.length)
-        this.contador++
-        return this.rotacion[this.proximo_indice()]
-    }
+  item () {
+  //        console.log(this.indice, '/', this.rotacion.length)
+    this.contador++
+    return this.rotacion[this.proximoIndice()]
+  }
 
-    proximo_indice () {
-        this.indice++
+  proximoIndice () {
+    this.indice++
 
-        if (this.indice >= this.rotacion.length) this.indice = 0
+    if (this.indice >= this.rotacion.length) this.indice = 0
 
-        return this.indice
-    }
+    return this.indice
+  }
 
-    items() {
-        return this.rotacion
-    }
+  items () {
+    return this.rotacion
+  }
 
-    pedidos() {
-        return this.contador_pedidos
-    }
+  pedidos () {
+    return this.contador_pedidos
+  }
 }
 
-module.exports = rotativo
+module.exports = Rotativo
