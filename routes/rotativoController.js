@@ -22,4 +22,10 @@ router.get('/pedidos', function (req, res) {
   res.json({ total: pedidos })
 })
 
+router.get('/version', function (req, res) {
+  const version = rotativo.version()
+
+  res.json({ version: version })
+})
+
 module.exports = router
