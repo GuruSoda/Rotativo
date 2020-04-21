@@ -5,6 +5,8 @@ const path = require('path')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+// const fs = require('fs')
+const rfs = require('rotating-file-stream')
 
 const indexRotativo = require('./routes/rotativoController')
 
@@ -13,13 +15,18 @@ const indexRotativo = require('./routes/rotativoController')
 
 const app = express()
 
+// create a rotating write stream
+const accessLogStream = rfs.createStream('accesos.log', { interval: '1d', path: path.join(__dirname, './logs') })
+// const accessLogStream = fs.createWriteStream(path.join(__dirname, './logs/access.log'), { flags: 'a' })
+// configuro el logger
+app.use(logger(':date[clf] - :remote-addr - :status - :method - :url - :response-time ms - :user-agent', { stream: accessLogStream }))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.set(cors())
 app.set('etag', false)
-app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(cookieParser())
