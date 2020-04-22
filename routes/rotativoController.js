@@ -10,6 +10,15 @@ router.get('/url', function (req, res) {
   res.json({ url: url })
 })
 
+router.get('/url302', function (req, res) {
+  const url = rotativo.item()
+
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate')
+  res.set('Expires', 'Thu, 01 Jan 1970 00:00:00 GMT')
+
+  res.redirect(302, url)
+})
+
 router.get('/items', function (req, res) {
   const items = rotativo.items()
 
